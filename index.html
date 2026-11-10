@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>오늘의 뉴스 | 뉴스 포털</title>
+  <style>
+    :root{--navy:#102a56;--blue:#1769d2;--ink:#171b24;--muted:#737b89;--line:#e7eaf0;--bg:#f5f7fa;--red:#e34b52}
+    *{box-sizing:border-box} body{margin:0;background:#fff;color:var(--ink);font-family:Arial,"Noto Sans KR",sans-serif}
+    a{color:inherit;text-decoration:none} button,input{font:inherit}
+    .topline{height:34px;background:#f6f7f9;border-bottom:1px solid var(--line);font-size:12px;color:#697386}
+    .wrap{max-width:1120px;margin:auto;padding:0 20px}.topline .wrap{height:100%;display:flex;align-items:center;justify-content:space-between}
+    header{background:white}.brandrow{height:88px;display:flex;align-items:center;gap:30px}
+    .logo{font-size:31px;font-weight:900;letter-spacing:-1.8px;color:var(--blue);white-space:nowrap}.logo span{color:var(--ink)}
+    .search{height:44px;max-width:500px;flex:1;display:flex;border:2px solid var(--blue);border-radius:4px;overflow:hidden}
+    .search input{border:0;outline:0;padding:0 14px;flex:1;min-width:0}.search button{width:54px;border:0;background:var(--blue);color:white;cursor:pointer;font-size:19px}
+    .header-links{margin-left:auto;font-size:13px;color:#626b79;white-space:nowrap}
+    nav{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    nav .wrap{display:flex;align-items:center;gap:28px;height:50px;overflow:auto;white-space:nowrap}
+    nav a{font-size:15px;font-weight:700}nav a.active{color:var(--blue)}
+    .breaking{background:#f7faff;border-bottom:1px solid #e5edf8}.breaking .wrap{height:42px;display:flex;align-items:center;gap:12px;font-size:13px}
+    .breaking b{color:var(--red);font-size:12px}.breaking span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    main{background:var(--bg);padding:24px 0 50px}.layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:22px}
+    .panel{background:white;border:1px solid var(--line);border-radius:7px}
+    .section-head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px 14px;border-bottom:1px solid var(--line)}
+    .section-head h2{font-size:19px;margin:0;letter-spacing:-.5px}.section-head small{font-size:12px;color:var(--muted)}
+    .lead{display:grid;grid-template-columns:1.25fr 1fr;gap:18px;padding:20px;border-bottom:1px solid var(--line)}
+    .lead-image{min-height:220px;border-radius:5px;background:linear-gradient(135deg,#dce9f8,#9fbce0);display:grid;place-items:center;color:#315b8f;font-size:13px}
+    .lead h1{font-size:24px;line-height:1.42;letter-spacing:-.8px;margin:8px 0 12px}.lead p{font-size:14px;line-height:1.65;color:#667080;margin:0 0 15px}
+    .meta{font-size:12px;color:#9299a5}.tag{font-size:12px;color:var(--blue);font-weight:700}
+    .headline-list{padding:6px 20px 14px}.headline{padding:13px 0;border-bottom:1px solid #f0f1f4}.headline:last-child{border:0}
+    .headline strong{font-size:15px;line-height:1.5;display:block}.headline .meta{margin-top:5px}
+    .news-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:16px 20px 20px}
+    .news-card{border:1px solid var(--line);border-radius:5px;overflow:hidden}.thumb{height:105px;background:linear-gradient(135deg,#e9edf4,#cbd6e5);display:grid;place-items:center;color:#7c8798;font-size:12px}
+    .news-card div:last-child{padding:11px}.news-card strong{font-size:14px;line-height:1.45;display:block}.news-card .meta{margin-top:7px}
+    aside{display:flex;flex-direction:column;gap:16px}.sidebox{padding:17px}.sidebox h3{font-size:16px;margin:0 0 13px}.rank{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid #f0f1f4;font-size:13px;line-height:1.45}.rank:last-child{border:0}.rank b{color:var(--blue);width:14px}
+    .weather{display:flex;align-items:center;justify-content:space-between}.weather strong{font-size:24px}.weather small{color:var(--muted)}
+    .topic{display:flex;flex-wrap:wrap;gap:7px}.topic span{border:1px solid var(--line);border-radius:20px;padding:7px 10px;font-size:12px;color:#596273}
+    footer{padding:26px 0;color:#9299a5;font-size:12px;line-height:1.7;border-top:1px solid var(--line)}
+    .notice{margin:0 20px 16px;padding:10px 12px;background:#fff8e9;color:#8a6726;border-radius:4px;font-size:12px;line-height:1.5}
+    @media(max-width:800px){.layout{grid-template-columns:1fr}.header-links{display:none}.brandrow{height:auto;padding-top:18px;padding-bottom:16px;flex-wrap:wrap;gap:14px}.search{flex-basis:100%;max-width:none}.lead{grid-template-columns:1fr}.lead-image{min-height:160px}aside{display:grid;grid-template-columns:1fr 1fr}}
+    @media(max-width:520px){.wrap{padding:0 13px}.logo{font-size:27px}nav .wrap{gap:22px}.news-grid{grid-template-columns:1fr;padding:12px}.section-head{padding:15px}.lead{padding:14px}.headline-list{padding:4px 15px 10px}aside{grid-template-columns:1fr}.lead h1{font-size:21px}}
+  </style>
+</head>
+<body>
+  <div class="topline"><div class="wrap"><span id="today">오늘의 주요 뉴스</span><span>로그인　 회원가입　 고객센터</span></div></div>
+  <header>
+    <div class="wrap brandrow">
+      <a class="logo" href="#">오늘<span>의</span>뉴스</a>
+      <form class="search" id="searchForm"><input id="searchInput" placeholder="뉴스 검색" aria-label="뉴스 검색"><button aria-label="검색">⌕</button></form>
+      <div class="header-links">뉴스스탠드　|　마이뉴스</div>
+    </div>
+    <nav><div class="wrap">
+      <a class="active" href="#top">뉴스홈</a><a href="#politics">정치</a><a href="#economy">경제</a><a href="#society">사회</a><a href="#culture">생활·문화</a><a href="#world">세계</a><a href="#tech">IT·과학</a><a href="#sports">스포츠</a>
+    </div></nav>
+  </header>
+  <div class="breaking"><div class="wrap"><b>속보</b><span>주요 소식을 한눈에 확인할 수 있는 뉴스 포털 예시 화면이야.</span></div></div>
+  <main id="top"><div class="wrap layout">
+    <section>
+      <div class="panel">
+        <div class="section-head"><h2>오늘의 주요 뉴스</h2><small>많이 본 뉴스 · 최신순</small></div>
+        <div class="lead">
+          <div class="lead-image">메인 뉴스 이미지 영역</div>
+          <div><span class="tag">오늘의 헤드라인</span><h1>빠르게 변하는 세상, 오늘의 주요 소식을 한곳에서</h1><p>정치·경제·사회부터 과학과 스포츠까지. 중요한 뉴스를 분야별로 살펴볼 수 있는 포털형 뉴스 화면이야.</p><div class="meta">뉴스 편집부　·　오전 9:30</div></div>
+        </div>
+        <div class="notice">※ 현재 화면은 디자인 예시야. 실제 기사·속보·순위 데이터가 연결된 것은 아니야.</div>
+        <div class="headline-list" id="headlineList">
+          <article class="headline"><strong>국내외 주요 현안을 쉽게 정리한 오늘의 첫 번째 뉴스</strong><div class="meta">종합 · 10분 전</div></article>
+          <article class="headline"><strong>산업과 기술의 변화, 우리 생활에는 어떤 영향을 줄까</strong><div class="meta">경제 · 25분 전</div></article>
+          <article class="headline"><strong>새로운 과학 연구 결과가 주목받는 이유</strong><div class="meta">IT·과학 · 42분 전</div></article>
+          <article class="headline"><strong>오늘의 주요 스포츠 경기와 선수 소식</strong><div class="meta">스포츠 · 1시간 전</div></article>
+        </div>
+      </div>
+      <div class="panel" style="margin-top:18px">
+        <div class="section-head"><h2>분야별 뉴스</h2><small>주요 분야 모아보기</small></div>
+        <div class="news-grid">
+          <article class="news-card" id="politics"><div class="thumb">정치 뉴스 이미지</div><div><strong>정치권 주요 정책과 국내 현안 살펴보기</strong><div class="meta">정치 · 예시 기사</div></div></article>
+          <article class="news-card" id="economy"><div class="thumb">경제 뉴스 이미지</div><div><strong>경제 흐름과 산업 동향 한눈에 보기</strong><div class="meta">경제 · 예시 기사</div></div></article>
+          <article class="news-card" id="society"><div class="thumb">사회 뉴스 이미지</div><div><strong>우리 주변에서 일어나는 사회 소식</strong><div class="meta">사회 · 예시 기사</div></div></article>
+          <article class="news-card" id="culture"><div class="thumb">생활·문화 이미지</div><div><strong>문화·생활 트렌드와 유용한 정보</strong><div class="meta">생활·문화 · 예시 기사</div></div></article>
+          <article class="news-card" id="world"><div class="thumb">세계 뉴스 이미지</div><div><strong>세계 곳곳의 주요 사건과 국제 소식</strong><div class="meta">세계 · 예시 기사</div></div></article>
+          <article class="news-card" id="tech"><div class="thumb">IT·과학 이미지</div><div><strong>인공지능과 과학기술의 최신 흐름</strong><div class="meta">IT·과학 · 예시 기사</div></div></article>
+          <article class="news-card" id="sports"><div class="thumb">스포츠 이미지</div><div><strong>경기 결과와 스포츠 주요 소식</strong><div class="meta">스포츠 · 예시 기사</div></div></article>
+          <article class="news-card"><div class="thumb">지역 뉴스 이미지</div><div><strong>지역에서 전해지는 다양한 이야기</strong><div class="meta">지역 · 예시 기사</div></div></article>
+        </div>
+      </div>
+    </section>
+    <aside>
+      <div class="panel sidebox"><h3>많이 본 뉴스</h3>
+        <div class="rank"><b>1</b><span>오늘 사람들이 주목하는 주요 이슈</span></div><div class="rank"><b>2</b><span>경제와 산업 분야의 핵심 소식</span></div><div class="rank"><b>3</b><span>과학기술 분야의 새로운 발견</span></div><div class="rank"><b>4</b><span>국제 사회에서 전해진 주요 소식</span></div><div class="rank"><b>5</b><span>스포츠 경기 주요 결과</span></div>
+      </div>
+      <div class="panel sidebox"><h3>오늘의 키워드</h3><div class="topic"><span>#인공지능</span><span>#경제</span><span>#기후</span><span>#반도체</span><span>#국제</span><span>#스포츠</span></div></div>
+      <div class="panel sidebox"><h3>오늘의 날씨</h3><div class="weather"><strong>☀️</strong><div><strong>날씨 정보</strong><br><small>실시간 날씨 연동 전</small></div></div></div>
+    </aside>
+  </div></main>
+  <footer><div class="wrap">오늘의 뉴스 · 뉴스 포털 디자인 샘플<br>실제 언론사의 기사·로고·순위를 무단으로 복제하지 않는 독립적인 예시 화면이야.</div></footer>
+  <script>
+    const d=new Date(); document.getElementById('today').textContent=`${d.getFullYear()}년 ${d.getMonth()+1}월 ${d.getDate()}일 오늘의 주요 뉴스`;
+    document.getElementById('searchForm').addEventListener('submit',e=>{
+      e.preventDefault(); const q=document.getElementById('searchInput').value.trim();
+      if(!q){alert('검색어를 입력해줘.');return;}
+      const items=[...document.querySelectorAll('.headline strong, .news-card strong')];
+      let count=0; items.forEach(el=>{const hit=el.textContent.toLowerCase().includes(q.toLowerCase());el.closest('article').style.display=hit?'':'none';if(hit)count++;});
+      if(!count) alert('예시 화면에서 검색 결과를 찾지 못했어. 실제 뉴스 검색은 별도 데이터 연결이 필요해.');
+    });
+  </script>
+</body>
+</html>
